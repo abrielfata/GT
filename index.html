@@ -55,6 +55,12 @@
                 <div id="resultList"></div>
             </div>
 
+            <div class="mb-4">
+                <button id="lensInfoBtn" class="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition shadow-sm">
+                    Tampilkan Info Tipe Lensa
+                </button>
+            </div>
+
             <div class="flex items-center justify-center gap-4 text-sm mb-3">
                 <div class="flex items-center gap-2 bg-white px-3 py-1 rounded border border-gray-800">
                     <span>⬜ Box di Meja</span>
@@ -119,7 +125,7 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Hiro,Chita">
                             Hiro<br/>Chita
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Okimi,Kaori" data-stacked="true">
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Okimi,Kaori" data-stacked="true">
                             Okimi<br/>Kaori
                         </td>
                     </tr>
@@ -209,27 +215,52 @@
             </table>
         </div>
 
+        <div id="selectedInfo" class="mt-4 p-4 bg-blue-50 border-2 border-blue-500 rounded-lg hidden">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                    </svg>
+                    <div>
+                        <h2 class="text-xl font-bold text-gray-900" id="selectedArea"></h2>
+                        <p class="text-gray-700 text-sm" id="selectedType"></p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-3 border-blue-300">
+            <div id="detailsContainer" class="mt-3 text-sm space-y-3">
+                </div>
+
+            <button 
+                id="closeBtn"
+                class="mt-3 text-sm text-blue-600 hover:text-blue-800 underline"
+            >
+                Tutup
+            </button>
+        </div>
         </div>
 
-    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden items-center justify-center p-4">
-        <div id="modal-content" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative">
-            <button id="modal-close-btn" class="absolute top-3 right-3 ..." aria-label="Tutup">
-                <svg class="w-6 h-6" ...>
-                    <path ... d="M6 18L18 6M6 6l12 12"></path>
+    <div id="modal-lens-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden items-center justify-center p-4">
+        <div id="modal-lens-content" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative">
+            <button id="modal-lens-close-btn" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600" aria-label="Tutup">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
             
-            <h2 class="text-xl font-bold text-gray-900 mb-1" id="modal-title"></h2>
-            <p class="text-gray-600 text-sm mb-3" id="modal-type"></p>
+            <h2 class="text-xl font-bold text-gray-900 mb-1" id="modal-lens-title"></h2>
+            <p class="text-gray-600 text-sm mb-3" id="modal-lens-type"></p>
 
             <hr class="border-gray-200">
             
-            <div id="modal-details-container" class="mt-4 text-sm space-y-3">
+            <div id="modal-lens-details" class="mt-4 text-sm space-y-3">
                 </div>
         </div>
     </div>
     <script>
-        // ===== DATABASE PENJELASAN LENGKAP (DENGAN REKOMENDASI FRAME MIRIP) =====
+        // ===== DATABASE FRAME (DARI PDF) =====
         const glassesData = {
             "Kyosi": { 
                 nama: "Kyosi", bentuk: "Square", bahanDepan: "Full Plastik", bahanGagang: "Full Plastik", per: "Tidak Elastis", nosepad: "Tanam", 
@@ -643,9 +674,26 @@
                 rekomendasi: "Airi (versi lebih tipis dan lebih kecil)"
             }
         };
+
+        // ===== DATABASE LENSA BARU (DARI GAMBAR) =====
+        const lensesData = {
+            "Clear": { nama: "Clear Lenses", deskripsi: "Lensa Minus Clear (SPH/CYL) CR. Ini adalah lensa standar yang jernih dan bening." },
+            "Blueray": { nama: "Blueray Lenses", deskripsi: "Lensa Minus Blueray Antiradiasi. Didesain untuk memblokir sinar biru berbahaya dari layar gadget (HP, laptop)." },
+            "Photochromic": { nama: "Photochromic Lenses", deskripsi: "Lensa Photochromic (SPH/CYL). Lensa yang otomatis berubah menjadi gelap saat terkena sinar matahari." },
+            "Bluechromic": { nama: "Bluechromic Lenses", deskripsi: "Lensa Minus Bluechromic. Ini adalah lensa gabungan, sudah anti blueray DAN bisa berubah gelap (Photochromic)." },
+            "Hi-Index": { nama: "Lensa Tipis (Hi-Index)", deskripsi: "Lensa Tipis / Hi-Index (SPH/CYL). Direkomendasikan untuk ukuran minus tinggi agar lensa tetap tipis dan ringan." },
+            "Progresif": { nama: "Lensa Progresif", deskripsi: "Lensa Progresif (Double Focus). Untuk penglihatan 3-in-1: jarak jauh, menengah (laptop), dan dekat (baca HP) tanpa ada garis pembatas." },
+            "PurePlus": { nama: "Lensa Pure Plus", deskripsi: "Lensa Pure Plus. Kemungkinan lensa dengan fitur kejernihan ekstra atau lapisan perlindungan tambahan." },
+            "Drive": { nama: "Drive Lenses", deskripsi: "Lensa Drive (Anti Glare). Lensa khusus untuk berkendara, sangat membantu mengurangi silau dari lampu mobil di malam hari." },
+            "Sunglasses": { nama: "Sunglasses Hitam", deskripsi: "Lensa Sunglasses Hitam. Lensa gelap permanen (hitam) untuk melindungi dari sinar matahari." },
+            "Crizal Rock": { nama: "Essilor Crizal Rock", deskripsi: "Lensa Essilor Crizal Rock. Lensa premium dari Essilor yang paling tahan gores dan mudah dibersihkan." },
+            "Crizal Sapphire": { nama: "Essilor Crizal Sapphire", deskripsi: "Lensa Essilor Crizal Sapphire. Lensa premium dari Essilor dengan anti-pantul terbaik, membuatnya terlihat 'tidak terlihat'." },
+            "Anti-Fatigue": { nama: "Anti-Fatigue Lenses", deskripsi: "Lensa Antifatigue / Mata Lelah. Lensa yang didesain untuk membantu mata lebih rileks saat bekerja di depan layar atau membaca dalam waktu lama." },
+            "Optifog": { nama: "Essilor Optifog", deskripsi: "Lensa Essilor Optifog. Lensa premium dari Essilor yang memiliki lapisan anti-embun." }
+        };
         // ===== AKHIR DATABASE =====
 
-        // Ini adalah daftar frame di denah, dicocokkan dengan data-names di HTML
+        // Daftar frame di denah
         const allGlasses = [
             { name: 'Kyosi', type: 'table', area: 'A1' },
             { name: 'Kaizu', type: 'table', area: 'A1' },
@@ -719,9 +767,9 @@
             { name: 'Hanami', type: 'table', area: 'B7' },
             { name: 'Doci', type: 'stacked', area: 'C7' }, 
             { name: 'Yuki', type: 'stacked', area: 'C7' }, 
-            { name: 'Amiko', type: 'table', area: 'A8' }, // Diupdate
-            { name: 'Inari', type: 'table', area: 'A8' }, // Diupdate
-            { name: 'Shizu', type: 'table', area: 'A8' }, // Diupdate
+            { name: 'Amiko', type: 'table', area: 'A8' }, 
+            { name: 'Inari', type: 'table', area: 'A8' }, 
+            { name: 'Shizu', type: 'table', area: 'A8' }, 
             { name: 'Yuji', type: 'table', area: 'B8' },
             { name: 'Ayumi', type: 'table', area: 'B8' },
             { name: 'Sena', type: 'stacked', area: 'C8' }, 
@@ -730,23 +778,182 @@
             { name: 'Chami', type: 'stacked', area: 'D8' }  
         ];
 
-        // === LOGIKA BARU UNTUK MODAL ===
+        // === AMBIL SEMUA ELEMEN ===
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const resultCount = document.getElementById('resultCount');
         const resultList = document.getElementById('resultList');
-        
-        // Ambil elemen modal baru
-        const modalOverlay = document.getElementById('modal-overlay');
-        const modalContent = document.getElementById('modal-content');
-        const modalTitle = document.getElementById('modal-title');
-        const modalType = document.getElementById('modal-type');
-        const modalDetailsContainer = document.getElementById('modal-details-container');
-        const modalCloseBtn = document.getElementById('modal-close-btn');
-        
         const cells = document.querySelectorAll('.cell');
+        
+        // Elemen Panel Info Frame
+        const selectedInfo = document.getElementById('selectedInfo');
+        const selectedArea = document.getElementById('selectedArea');
+        const selectedType = document.getElementById('selectedType');
+        const detailsContainer = document.getElementById('detailsContainer'); 
+        const closeBtn = document.getElementById('closeBtn');
 
-        // Search functionality
+        // Elemen Modal Lensa
+        const modalLensOverlay = document.getElementById('modal-lens-overlay');
+        const modalLensTitle = document.getElementById('modal-lens-title');
+        const modalLensType = document.getElementById('modal-lens-type');
+        const modalLensDetails = document.getElementById('modal-lens-details');
+        const modalLensCloseBtn = document.getElementById('modal-lens-close-btn');
+        const lensInfoBtn = document.getElementById('lensInfoBtn'); 
+
+        // === FUNGSI MODAL LENSA ===
+        function openLensModal(title, type) {
+            modalLensTitle.textContent = title;
+            modalLensType.textContent = type;
+            modalLensOverlay.classList.remove('hidden');
+            modalLensOverlay.classList.add('flex'); // Tambahkan flex untuk memusatkan
+        }
+
+        function closeLensModal() {
+            modalLensOverlay.classList.add('hidden');
+            modalLensOverlay.classList.remove('flex'); // Hapus flex
+            modalLensDetails.innerHTML = '';
+        }
+
+        // === EVENT LISTENER TOMBOL LENSA (Buka Popup) ===
+        lensInfoBtn.addEventListener('click', () => {
+            cells.forEach(c => c.classList.remove('selected')); // Hapus seleksi sel
+            selectedInfo.classList.add('hidden'); // Sembunyikan panel frame
+            modalLensDetails.innerHTML = ''; // Kosongkan
+            
+            // Loop database lensa dan buat HTML
+            for (const key in lensesData) {
+                const data = lensesData[key];
+                const detailHtml = `
+                    <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                        <h3 class="font-bold text-base text-blue-900">${data.nama}</h3>
+                        <p class="text-gray-800 mt-1">${data.deskripsi}</p>
+                    </div>
+                `;
+                modalLensDetails.innerHTML += detailHtml;
+            }
+            
+            openLensModal("📚 Info Tipe Lensa", "Informasi umum berdasarkan katalog");
+        });
+        
+        // === EVENT LISTENER DENAH (Buka Panel Biru) ===
+        cells.forEach(cell => {
+            cell.addEventListener('click', () => {
+                const names = cell.dataset.names;
+                if (!names) return;
+
+                const isStacked = cell.dataset.stacked === 'true';
+                const namesList = names.split(',');
+                
+                cells.forEach(c => c.classList.remove('selected'));
+                cell.classList.add('selected');
+                
+                // Sembunyikan modal lensa jika terbuka
+                modalLensOverlay.classList.add('hidden'); 
+                modalLensOverlay.classList.remove('flex');
+
+                selectedArea.textContent = `📍 Area: ${names}`;
+                selectedType.textContent = isStacked ? '🟨 Display di atas box (ditumpuk)' : '⬜ Display di atas meja';
+                
+                detailsContainer.innerHTML = ''; 
+
+                namesList.forEach(nameStr => {
+                    let name = nameStr.trim();
+                    if (name === 'Kosong') {
+                        detailsContainer.innerHTML += '<p class="text-gray-600">Box ini kosong.</p>';
+                        return;
+                    }
+                    if (name.toLowerCase() === 'amiku') name = 'Amiko'; // Koreksi typo
+
+                    const data = glassesData[name]; 
+                    
+                    if (data) {
+                        let detailHtml = '';
+                        if (data.info) {
+                            detailHtml = `
+                                <div class="p-2 bg-gray-100 rounded">
+                                    <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
+                                    <p class="text-gray-600">${data.info}</p>
+                                </div>
+                            `;
+                        } else {
+                            detailHtml = `
+                                <div class="p-2 bg-blue-100 rounded">
+                                    <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
+                                    
+                                    <div class="mt-1">
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Spesifikasi Fisik:</h4>
+                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
+                                            <dt class="font-semibold text-gray-700">Bentuk:</dt>
+                                            <dd class="text-gray-800">${data.bentuk}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Per:</dt>
+                                            <dd class="text-gray-800">${data.per}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Depan:</dt>
+                                            <dd class="text-gray-800">${data.bahanDepan}</dd>
+
+                                            <dt class="font-semibold text-gray-700">Nosepad:</dt>
+                                            <dd class="text-gray-800">${data.nosepad}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Gagang:</dt>
+                                            <dd class="text-gray-800">${data.bahanGagang}</dd>
+                                        </dl>
+                                    </div>
+                                    
+                                    <div class="mt-2 pt-2 border-t border-blue-200">
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Wajah:</h4>
+                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
+                                            <dt class="font-semibold text-gray-700">Ukuran Wajah:</dt>
+                                            <dd class="text-gray-800 font-bold">${data.ukuranWajah}</dd>
+
+                                            <dt class="font-semibold text-gray-700 col-span-2 mt-1">Cocok Untuk:</dt>
+                                            <dd class="text-gray-800 col-span-2">${data.rekomendasiWajah}</dd>
+
+                                            <dt class="font-semibold text-gray-700 col-span-2 mt-1">Catatan:</dt>
+                                            <dd class="text-gray-800 col-span-2">${data.catatanWajah}</dd>
+                                        </dl>
+                                    </div>
+
+                                    <div class="mt-2 pt-2 border-t border-blue-200">
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Frame Mirip:</h4>
+                                        <p class="text-gray-800">${data.rekomendasi}</p>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        detailsContainer.innerHTML += detailHtml;
+                    } else {
+                        detailsContainer.innerHTML += `
+                            <div class="p-2 bg-gray-100 rounded">
+                                <h3 class="font-bold text-base text-gray-900">${name}</h3>
+                                <p class="text-gray-600">Info detail untuk item ini tidak tersedia.</p>
+                            </div>
+                        `;
+                    }
+                });
+                
+                selectedInfo.classList.remove('hidden'); // Tampilkan panel biru
+            });
+        });
+
+        // === EVENT LISTENER CLOSE BUTTONS ===
+        
+        // Tombol close untuk panel biru (frame)
+        closeBtn.addEventListener('click', () => {
+            selectedInfo.classList.add('hidden');
+            cells.forEach(c => c.classList.remove('selected'));
+            detailsContainer.innerHTML = ''; 
+        });
+
+        // Tombol close untuk modal popup (lensa)
+        modalLensCloseBtn.addEventListener('click', closeLensModal);
+        modalLensOverlay.addEventListener('click', (e) => {
+            if (e.target === modalLensOverlay) {
+                closeLensModal();
+            }
+        });
+
+        // === EVENT LISTENER SEARCH ===
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
             
@@ -755,7 +962,6 @@
             });
 
             if (term) {
-                // Cari di database
                 const filteredNames = Object.keys(glassesData).filter(name => 
                     name.toLowerCase().includes(term)
                 );
@@ -809,126 +1015,6 @@
                 }
             } else {
                 searchResults.classList.add('hidden');
-            }
-        });
-
-        // Cell click functionality (DIUBAH UNTUK MODAL)
-        cells.forEach(cell => {
-            cell.addEventListener('click', () => {
-                const names = cell.dataset.names;
-                if (!names) return;
-
-                const isStacked = cell.dataset.stacked === 'true';
-                const namesList = names.split(',');
-                
-                cells.forEach(c => c.classList.remove('selected'));
-                cell.classList.add('selected');
-
-                // Isi judul modal
-                modalTitle.textContent = `📍 Area: ${names}`;
-                modalType.textContent = isStacked ? '🟨 Display di atas box (ditumpuk)' : '⬜ Display di atas meja';
-                
-                // Kosongkan detail sebelumnya
-                modalDetailsContainer.innerHTML = ''; 
-
-                namesList.forEach(nameStr => {
-                    let name = nameStr.trim();
-                    if (name === 'Kosong') {
-                        modalDetailsContainer.innerHTML += '<p class="text-gray-600">Box ini kosong.</p>';
-                        return;
-                    }
-
-                    // Koreksi typo "Amiku"
-                    if (name.toLowerCase() === 'amiku') {
-                        name = 'Amiko';
-                    }
-
-                    const data = glassesData[name]; 
-                    
-                    if (data) {
-                        let detailHtml = '';
-                        if (data.info) {
-                            detailHtml = `
-                                <div class="p-3 bg-gray-100 rounded-lg">
-                                    <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
-                                    <p class="text-gray-600">${data.info}</p>
-                                </div>
-                            `;
-                        } else {
-                            detailHtml = `
-                                <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
-                                    <h3 class="font-bold text-base text-blue-900">${data.nama}</h3>
-                                    
-                                    <div class="mt-2">
-                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Spesifikasi Fisik:</h4>
-                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            <dt class="font-semibold text-gray-700">Bentuk:</dt>
-                                            <dd class="text-gray-800">${data.bentuk}</dd>
-                                            
-                                            <dt class="font-semibold text-gray-700">Per:</dt>
-                                            <dd class="text-gray-800">${data.per}</dd>
-                                            
-                                            <dt class="font-semibold text-gray-700">Depan:</dt>
-                                            <dd class="text-gray-800">${data.bahanDepan}</dd>
-
-                                            <dt class="font-semibold text-gray-700">Nosepad:</dt>
-                                            <dd class="text-gray-800">${data.nosepad}</dd>
-                                            
-                                            <dt class="font-semibold text-gray-700">Gagang:</dt>
-                                            <dd class="text-gray-800">${data.bahanGagang}</dd>
-                                        </dl>
-                                    </div>
-                                    
-                                    <div class="mt-2 pt-2 border-t border-blue-200">
-                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Wajah:</h4>
-                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
-                                            <dt class="font-semibold text-gray-700">Ukuran Wajah:</dt>
-                                            <dd class="text-gray-800 font-bold">${data.ukuranWajah}</dd>
-
-                                            <dt class="font-semibold text-gray-700 col-span-2 mt-1">Cocok Untuk:</dt>
-                                            <dd class="text-gray-800 col-span-2">${data.rekomendasiWajah}</dd>
-
-                                            <dt class="font-semibold text-gray-700 col-span-2 mt-1">Catatan:</dt>
-                                            <dd class="text-gray-800 col-span-2">${data.catatanWajah}</dd>
-                                        </dl>
-                                    </div>
-
-                                    <div class="mt-2 pt-2 border-t border-blue-200">
-                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Frame Mirip:</h4>
-                                        <p class="text-gray-800">${data.rekomendasi}</p>
-                                    </div>
-                                </div>
-                            `;
-                        }
-                        modalDetailsContainer.innerHTML += detailHtml;
-                    } else {
-                        modalDetailsContainer.innerHTML += `
-                            <div class="p-2 bg-gray-100 rounded">
-                                <h3 class="font-bold text-base text-gray-900">${name}</h3>
-                                <p class="text-gray-600">Info detail untuk item ini tidak tersedia.</p>
-                            </div>
-                        `;
-                    }
-                });
-                
-                // Tampilkan modal
-                modalOverlay.classList.remove('hidden');
-            });
-        });
-
-        // Logika Tombol Close (DIUBAH UNTUK MODAL)
-        modalCloseBtn.addEventListener('click', () => {
-            modalOverlay.classList.add('hidden');
-            cells.forEach(c => c.classList.remove('selected'));
-            modalDetailsContainer.innerHTML = ''; 
-        });
-
-        // Logika Close saat klik overlay
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.add('hidden');
-                cells.forEach(c => c.classList.remove('selected'));
-                modalDetailsContainer.innerHTML = ''; 
             }
         });
     </script>
