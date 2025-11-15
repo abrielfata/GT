@@ -164,8 +164,8 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Jiyo,Luna">
                             Jiyo<br/>Luna
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Piyo" data-stacked="true">
-                            Piyo
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Geumi,Nalla" data-stacked="true">
+                            Geumi<br/>Nalla                       
                         </td>
                         <td class="bg-white" colspan="2" rowspan="4"></td>
                     </tr>
@@ -177,8 +177,8 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Rumi,Bomi">
                             Rumi<br/>Bomi
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Doci,Yuki" data-stacked="true">
-                            Doci<br/>Yuki
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Piyo" data-stacked="true">
+                            Piyo
                         </td>
                     </tr>
 
@@ -189,8 +189,8 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Aozora,Kinsei,Hanami">
                             Aozora<br/>Kinsei<br/>Hanami
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Sena,Hana" data-stacked="true">
-                            Sena<br/>Hana
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Doci,Yuki" data-stacked="true">
+                            Doci<br/>Yuki
                         </td>
                     </tr>
 
@@ -201,9 +201,13 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Yuji,Ayumi">
                             Yuji<br/>Ayumi
                         </td>
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Sena,Hana" data-stacked="true">
+                            Sena<br/>Hana
+                        </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Suwa,Chami" data-stacked="true">
                             Suwa<br/>Chami
                         </td>
+
                     </tr>
                 </tbody>
             </table>
@@ -577,6 +581,7 @@
             "Chami": { 
                 nama: "Chami", info: "Info detail tidak ada di PDF." 
             },
+            // Ini tambahan yang hilang dari file Kakak
             "Geumi": { 
                 nama: "Geumi", bentuk: "Cat Eye", bahanDepan: "Metal", bahanGagang: "Metal", per: "Tidak Ada Per", nosepad: "Ada Nosepad", 
                 ukuranWajah: "Medium (ke lebar)", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
@@ -586,6 +591,67 @@
                 nama: "Nalla", bentuk: "Cat Eye", bahanDepan: "TR90 + Metal", bahanGagang: "TR90 + Metal", per: "Ada Per", nosepad: "Ada Nosepad", 
                 ukuranWajah: "Medium (ke kecil/lebar)", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
                 rekomendasi: "Anya, Akika, Geumi, Yuki" 
+            },
+            // Ini data dari PDF yang tidak ada di denah, tapi saya masukkan untuk kelengkapan
+            "Najio": { 
+                nama: "Najio", bentuk: "Square", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Sedikit Elastis", nosepad: "Tanam", 
+                ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
+                rekomendasi: "Hoshi (versi lebih kotak), Hajime (versi ada nosepad)" 
+            },
+            "Riyuki": { 
+                nama: "Riyuki", bentuk: "Round", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Sedikit Elastis", nosepad: "Tanam", 
+                ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Oval, Lonjong, Kotak, Hati, Diamond", catatanWajah: "Wajah Bulat lebar kurang disarankan.", 
+                rekomendasi: "Jine dan Hanami (versi lebih bulat oval)" 
+            },
+            "Inari": {
+                nama: "Inari", bentuk: "Square", bahanDepan: "TR90", bahanGagang: "TR90", per: "Ada Per", nosepad: "Tanam",
+                ukuranWajah: "Untuk wajah lebar", rekomendasiWajah: "Bulat, Oval, Lonjong, Segitiga terbalik/Hati, Diamond", catatanWajah: "-",
+                rekomendasi: "Shizu (versi full plastik dan tidak terlalu besar)"
+            },
+            "Shizu": {
+                nama: "Shizu", bentuk: "Square", bahanDepan: "TR90", bahanGagang: "TR90", per: "Sedikit Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Bulat, Oval, Lonjong, Segitiga terbalik/Hati, Diamond", catatanWajah: "-",
+                rekomendasi: "Inari (versi lebih lebar)"
+            },
+            "Amiko": {
+                nama: "Amiko", bentuk: "Round", bahanDepan: "TR90 + Metal", bahanGagang: "TR90 + Metal", per: "Ada Per", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Kotak, Oval, Lonjong, Segitiga terbalik/Hati, Diamond", catatanWajah: "-",
+                rekomendasi: "Bomi (versi elastis & non nosepad), Hankai (versi dengan nosepad)"
+            },
+            "Kasumi": {
+                nama: "Kasumi", bentuk: "Square", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium ke lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-",
+                rekomendasi: "Meiro (versi tidak terlalu tebal)"
+            },
+            "Yume": {
+                nama: "Yume", bentuk: "Oval (pipih)", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Kurang cocok untuk wajah lebar besar.",
+                rekomendasi: "Ukiyo (versi tidak terlalu oval dan lebih pipih)"
+            },
+            "Ukiyo": {
+                nama: "Ukiyo", bentuk: "Oval (pipih)", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Kurang cocok untuk wajah lebar besar.",
+                rekomendasi: "Yume (bentuk lebih oval dan lebih lebar)"
+            },
+            "Kizuna": {
+                nama: "Kizuna", bentuk: "Rectangle", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Kurang cocok untuk wajah lebar besar.",
+                rekomendasi: "Meiro (bentuk lebih simple)"
+            },
+            "Hika": {
+                nama: "Hika", bentuk: "Cat Eye", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-",
+                rekomendasi: "Shika & Noze (non sunglasses)"
+            },
+            "Meiro": {
+                nama: "Meiro", bentuk: "Rectangle", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Tidak Elastis", nosepad: "Tanam",
+                ukuranWajah: "Medium ke lebar/kecil", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-",
+                rekomendasi: "Kasumi (versi lebih lebar)"
+            },
+            "Akashi": {
+                nama: "Akashi", bentuk: "Oval", bahanDepan: "Double Rim (Plastik + Besi)", bahanGagang: "Besi", per: "Tidak Elastis", nosepad: "Ada Nosepad",
+                ukuranWajah: "Medium ke lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-",
+                rekomendasi: "Airi (versi lebih tipis dan lebih kecil)"
             }
         };
         // ===== AKHIR DATABASE =====
@@ -651,6 +717,8 @@
             { name: 'Bomi', type: 'table', area: 'B6' },
             { name: 'Doci', type: 'stacked', area: 'C6' },
             { name: 'Yuki', type: 'stacked', area: 'C6' },
+            { name: 'Geumi', type: 'stacked', area: 'C6' }, // Ditambahkan
+            { name: 'Nalla', type: 'stacked', area: 'C6' }, // Ditambahkan
             { name: 'Akita', type: 'table', area: 'A7' },
             { name: 'Inabe', type: 'table', area: 'A7' },
             { name: 'Aozora', type: 'table', area: 'B7' },
@@ -686,9 +754,19 @@
             });
 
             if (term) {
-                const filtered = allGlasses.filter(item => 
-                    item.name.toLowerCase().includes(term)
+                // Cari di database, bukan hanya di 'allGlasses'
+                const filteredNames = Object.keys(glassesData).filter(name => 
+                    name.toLowerCase().includes(term)
                 );
+                
+                const filtered = filteredNames.map(name => {
+                    const glassInLayout = allGlasses.find(g => g.name === name);
+                    if (glassInLayout) {
+                        return glassInLayout;
+                    }
+                    // Jika tidak ada di denah, buat objek dummy
+                    return { name: name, type: 'database', area: 'N/A' };
+                });
 
                 if (filtered.length > 0) {
                     searchResults.classList.remove('hidden');
@@ -696,13 +774,20 @@
                     
                     let html = '';
                     filtered.slice(0, 5).forEach(item => {
+                        let location = '⬜ Di Meja'; // Default
+                        if (item.type === 'stacked') {
+                            location = '🟨 Ditumpuk';
+                        } else if (item.type === 'database') {
+                            location = 'ℹ️ Database';
+                        }
+
                         html += `
                             <div class="text-sm flex items-center gap-2">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                                 </svg>
                                 <span>${item.name}</span>
-                                <span class="text-xs text-gray-600">- ${item.type === 'stacked' ? '🟨 Ditumpuk' : '⬜ Di Meja'}</span>
+                                <span class="text-xs text-gray-600">- ${location}</span>
                             </div>
                         `;
                     });
@@ -763,30 +848,33 @@
                                 </div>
                             `;
                         } else {
-                            // ===== INI BAGIAN YANG DIPERBARUI =====
                             detailHtml = `
                                 <div class="p-2 bg-blue-100 rounded">
                                     <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
-                                    <dl class="grid grid-cols-2 gap-x-4 gap-y-1 mt-1">
-                                        <dt class="font-semibold text-gray-700">Bentuk:</dt>
-                                        <dd class="text-gray-800">${data.bentuk}</dd>
-                                        
-                                        <dt class="font-semibold text-gray-700">Per:</dt>
-                                        <dd class="text-gray-800">${data.per}</dd>
-                                        
-                                        <dt class="font-semibold text-gray-700">Depan:</dt>
-                                        <dd class="text-gray-800">${data.bahanDepan}</dd>
+                                    
+                                    <div class="mt-1">
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Spesifikasi Fisik:</h4>
+                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
+                                            <dt class="font-semibold text-gray-700">Bentuk:</dt>
+                                            <dd class="text-gray-800">${data.bentuk}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Per:</dt>
+                                            <dd class="text-gray-800">${data.per}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Depan:</dt>
+                                            <dd class="text-gray-800">${data.bahanDepan}</dd>
 
-                                        <dt class="font-semibold text-gray-700">Nosepad:</dt>
-                                        <dd class="text-gray-800">${data.nosepad}</dd>
-                                        
-                                        <dt class="font-semibold text-gray-700">Gagang:</dt>
-                                        <dd class="text-gray-800">${data.bahanGagang}</dd>
-                                    </dl>
+                                            <dt class="font-semibold text-gray-700">Nosepad:</dt>
+                                            <dd class="text-gray-800">${data.nosepad}</dd>
+                                            
+                                            <dt class="font-semibold text-gray-700">Gagang:</dt>
+                                            <dd class="text-gray-800">${data.bahanGagang}</dd>
+                                        </dl>
+                                    </div>
                                     
                                     <div class="mt-2 pt-2 border-t border-blue-200">
-                                        <h4 class="font-bold text-gray-800 mb-1">Rekomendasi Wajah:</h4>
-                                        <dl class_X="grid grid-cols-2 gap-x-4 gap-y-1">
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Wajah:</h4>
+                                        <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
                                             <dt class="font-semibold text-gray-700">Ukuran Wajah:</dt>
                                             <dd class="text-gray-800 font-bold">${data.ukuranWajah}</dd>
 
@@ -799,12 +887,11 @@
                                     </div>
 
                                     <div class="mt-2 pt-2 border-t border-blue-200">
-                                        <h4 class="font-bold text-gray-800 mb-1">Rekomendasi Frame Mirip:</h4>
+                                        <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Rekomendasi Frame Mirip:</h4>
                                         <p class="text-gray-800">${data.rekomendasi}</p>
                                     </div>
                                 </div>
                             `;
-                            // ===== AKHIR BAGIAN YANG DIPERBARUI =====
                         }
                         detailsContainer.innerHTML += detailHtml;
                     } else {
