@@ -198,7 +198,7 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Yuji,Ayumi">
                             Yuji<br/>Ayumi
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Sena,Hana" data-stacked="true">
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Sena,Hana" data-stacked="true">
                             Sena<br/>Hana
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Suwa,Chami" data-stacked="true">
@@ -209,33 +209,25 @@
             </table>
         </div>
 
-        <div id="selectedInfo" class="mt-4 p-4 bg-blue-50 border-2 border-blue-500 rounded-lg hidden">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
-                    </svg>
-                    <div>
-                        <h2 class="text-xl font-bold text-gray-900" id="selectedArea"></h2>
-                        <p class="text-gray-700 text-sm" id="selectedType"></p>
-                    </div>
-                </div>
-            </div>
+        </div>
 
-            <hr class="mt-3 border-blue-300">
-            <div id="detailsContainer" class="mt-3 text-sm space-y-3">
-                </div>
-
-            <button 
-                id="closeBtn"
-                class="mt-3 text-sm text-blue-600 hover:text-blue-800 underline"
-            >
-                Tutup
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden items-center justify-center p-4">
+        <div id="modal-content" class="bg-white rounded-lg shadow-xl p-6 w-full max-w-2xl max-h-[85vh] overflow-y-auto relative">
+            <button id="modal-close-btn" class="absolute top-3 right-3 ..." aria-label="Tutup">
+                <svg class="w-6 h-6" ...>
+                    <path ... d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
             </button>
+            
+            <h2 class="text-xl font-bold text-gray-900 mb-1" id="modal-title"></h2>
+            <p class="text-gray-600 text-sm mb-3" id="modal-type"></p>
+
+            <hr class="border-gray-200">
+            
+            <div id="modal-details-container" class="mt-4 text-sm space-y-3">
+                </div>
         </div>
     </div>
-
     <script>
         // ===== DATABASE PENJELASAN LENGKAP (DENGAN REKOMENDASI FRAME MIRIP) =====
         const glassesData = {
@@ -738,15 +730,20 @@
             { name: 'Chami', type: 'stacked', area: 'D8' }  
         ];
 
+        // === LOGIKA BARU UNTUK MODAL ===
         const searchInput = document.getElementById('searchInput');
         const searchResults = document.getElementById('searchResults');
         const resultCount = document.getElementById('resultCount');
         const resultList = document.getElementById('resultList');
-        const selectedInfo = document.getElementById('selectedInfo');
-        const selectedArea = document.getElementById('selectedArea');
-        const selectedType = document.getElementById('selectedType');
-        const detailsContainer = document.getElementById('detailsContainer'); 
-        const closeBtn = document.getElementById('closeBtn');
+        
+        // Ambil elemen modal baru
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalContent = document.getElementById('modal-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalType = document.getElementById('modal-type');
+        const modalDetailsContainer = document.getElementById('modal-details-container');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+        
         const cells = document.querySelectorAll('.cell');
 
         // Search functionality
@@ -758,7 +755,7 @@
             });
 
             if (term) {
-                // Cari di database, bukan hanya di 'allGlasses'
+                // Cari di database
                 const filteredNames = Object.keys(glassesData).filter(name => 
                     name.toLowerCase().includes(term)
                 );
@@ -768,7 +765,6 @@
                     if (glassInLayout) {
                         return glassInLayout;
                     }
-                    // Jika tidak ada di denah, buat objek dummy
                     return { name: name, type: 'database', area: 'N/A' };
                 });
 
@@ -778,7 +774,7 @@
                     
                     let html = '';
                     filtered.slice(0, 5).forEach(item => {
-                        let location = '⬜ Di Meja'; // Default
+                        let location = '⬜ Di Meja';
                         if (item.type === 'stacked') {
                             location = '🟨 Ditumpuk';
                         } else if (item.type === 'database') {
@@ -816,7 +812,7 @@
             }
         });
 
-        // Cell click functionality
+        // Cell click functionality (DIUBAH UNTUK MODAL)
         cells.forEach(cell => {
             cell.addEventListener('click', () => {
                 const names = cell.dataset.names;
@@ -828,15 +824,17 @@
                 cells.forEach(c => c.classList.remove('selected'));
                 cell.classList.add('selected');
 
-                selectedArea.textContent = `📍 Area: ${names}`;
-                selectedType.textContent = isStacked ? '🟨 Display di atas box (ditumpuk)' : '⬜ Display di atas meja';
+                // Isi judul modal
+                modalTitle.textContent = `📍 Area: ${names}`;
+                modalType.textContent = isStacked ? '🟨 Display di atas box (ditumpuk)' : '⬜ Display di atas meja';
                 
-                detailsContainer.innerHTML = ''; 
+                // Kosongkan detail sebelumnya
+                modalDetailsContainer.innerHTML = ''; 
 
                 namesList.forEach(nameStr => {
                     let name = nameStr.trim();
                     if (name === 'Kosong') {
-                        detailsContainer.innerHTML += '<p class="text-gray-600">Box ini kosong.</p>';
+                        modalDetailsContainer.innerHTML += '<p class="text-gray-600">Box ini kosong.</p>';
                         return;
                     }
 
@@ -851,17 +849,17 @@
                         let detailHtml = '';
                         if (data.info) {
                             detailHtml = `
-                                <div class="p-2 bg-gray-100 rounded">
+                                <div class="p-3 bg-gray-100 rounded-lg">
                                     <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
                                     <p class="text-gray-600">${data.info}</p>
                                 </div>
                             `;
                         } else {
                             detailHtml = `
-                                <div class="p-2 bg-blue-100 rounded">
-                                    <h3 class="font-bold text-base text-gray-900">${data.nama}</h3>
+                                <div class="p-3 bg-blue-50 rounded-lg border border-blue-200">
+                                    <h3 class="font-bold text-base text-blue-900">${data.nama}</h3>
                                     
-                                    <div class="mt-1">
+                                    <div class="mt-2">
                                         <h4 class="font-semibold text-gray-800 mb-1 underline decoration-blue-300">Spesifikasi Fisik:</h4>
                                         <dl class="grid grid-cols-2 gap-x-4 gap-y-1">
                                             <dt class="font-semibold text-gray-700">Bentuk:</dt>
@@ -902,9 +900,9 @@
                                 </div>
                             `;
                         }
-                        detailsContainer.innerHTML += detailHtml;
+                        modalDetailsContainer.innerHTML += detailHtml;
                     } else {
-                        detailsContainer.innerHTML += `
+                        modalDetailsContainer.innerHTML += `
                             <div class="p-2 bg-gray-100 rounded">
                                 <h3 class="font-bold text-base text-gray-900">${name}</h3>
                                 <p class="text-gray-600">Info detail untuk item ini tidak tersedia.</p>
@@ -913,15 +911,25 @@
                     }
                 });
                 
-                selectedInfo.classList.remove('hidden');
+                // Tampilkan modal
+                modalOverlay.classList.remove('hidden');
             });
         });
 
-        // Close button
-        closeBtn.addEventListener('click', () => {
-            selectedInfo.classList.add('hidden');
+        // Logika Tombol Close (DIUBAH UNTUK MODAL)
+        modalCloseBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('hidden');
             cells.forEach(c => c.classList.remove('selected'));
-            detailsContainer.innerHTML = ''; 
+            modalDetailsContainer.innerHTML = ''; 
+        });
+
+        // Logika Close saat klik overlay
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.add('hidden');
+                cells.forEach(c => c.classList.remove('selected'));
+                modalDetailsContainer.innerHTML = ''; 
+            }
         });
     </script>
 </body>
