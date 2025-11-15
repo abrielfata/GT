@@ -198,7 +198,7 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Yuji,Ayumi">
                             Yuji<br/>Ayumi
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Sena,Hana" data-stacked="true">
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Sena,Hana" data-stacked="true">
                             Sena<br/>Hana
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Suwa,Chami" data-stacked="true">
@@ -688,7 +688,7 @@
             { name: 'Kaiho', type: 'table', area: 'E2' },
             { name: 'Hiro', type: 'table', area: 'I2' },
             { name: 'Chita', type: 'table', area: 'I2' },
-            { name: 'Kosong', type: 'table', area: 'J2-Kosong' }, // Area unik
+            { name: 'Kosong', type: 'table', area: 'J2-Kosong' }, 
             { name: 'Okimi', type: 'stacked', area: 'J2' }, 
             { name: 'Kaori', type: 'stacked', area: 'J2' }, 
             { name: 'Shika', type: 'table', area: 'A3' },
@@ -729,7 +729,7 @@
             { name: 'Yuki', type: 'stacked', area: 'C7' }, 
             { name: 'Amiko', type: 'table', area: 'A8' }, // Diupdate
             { name: 'Inari', type: 'table', area: 'A8' }, // Diupdate
-            { name:'Hizu', type: 'table', area: 'A8' }, // Diupdate
+            { name: 'Shizu', type: 'table', area: 'A8' }, // Diupdate
             { name: 'Yuji', type: 'table', area: 'B8' },
             { name: 'Ayumi', type: 'table', area: 'B8' },
             { name: 'Sena', type: 'stacked', area: 'C8' }, 
@@ -834,15 +834,18 @@
                 detailsContainer.innerHTML = ''; 
 
                 namesList.forEach(nameStr => {
-                    const name = nameStr.trim();
+                    let name = nameStr.trim();
                     if (name === 'Kosong') {
                         detailsContainer.innerHTML += '<p class="text-gray-600">Box ini kosong.</p>';
                         return;
                     }
 
-                    // Typo correction for user input
-                    const correctedName = name.toLowerCase() === 'amiku' ? 'Amiko' : name;
-                    const data = glassesData[correctedName]; 
+                    // Koreksi typo "Amiku"
+                    if (name.toLowerCase() === 'amiku') {
+                        name = 'Amiko';
+                    }
+
+                    const data = glassesData[name]; 
                     
                     if (data) {
                         let detailHtml = '';
