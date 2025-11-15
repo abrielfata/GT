@@ -87,8 +87,8 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Miso,Anya">
                             Miso<br/>Anya
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Kaitou,Jine">
-                            Kaitou<br/>Jine
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Kaitou,Najio,Jine,Riyuki">
+                            Kaitou, Najio<br/>Jine, Riyuki
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Miki,Mine">
                             Miki<br/>Mine
@@ -119,10 +119,7 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Hiro,Chita">
                             Hiro<br/>Chita
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Kosong">
-                            Kosong
-                        </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Okimi,Kaori" data-stacked="true">
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Okimi,Kaori" data-stacked="true">
                             Okimi<br/>Kaori
                         </td>
                     </tr>
@@ -152,8 +149,8 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Kira,Mori">
                             Kira<br/>Mori
                         </td>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Haruna">
-                            Haruna
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Airi,Haruna">
+                            Airi<br/>Haruna
                         </td>
                     </tr>
 
@@ -165,7 +162,7 @@
                             Jiyo<br/>Luna
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Geumi,Nalla" data-stacked="true">
-                            Geumi<br/>Nalla                       
+                            Geumi<br/>Nalla
                         </td>
                         <td class="bg-white" colspan="2" rowspan="4"></td>
                     </tr>
@@ -183,8 +180,8 @@
                     </tr>
 
                     <tr>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Akita,Inabe">
-                            Akita<br/>Inabe
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Hatsu,Akita,Aisai,Inabe">
+                            Hatsu, Akita<br/>Aisai, Inabe
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Aozora,Kinsei,Hanami">
                             Aozora<br/>Kinsei<br/>Hanami
@@ -195,8 +192,8 @@
                     </tr>
 
                     <tr>
-                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Hatsu,Aisai">
-                            Hatsu<br/>Aisai
+                        <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Amiko,Inari,Shizu">
+                            Amiko<br/>Inari<br/>Shizu
                         </td>
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-white" data-names="Yuji,Ayumi">
                             Yuji<br/>Ayumi
@@ -207,7 +204,6 @@
                         <td class="cell border border-black p-2 text-xs cursor-pointer bg-yellow-100" data-names="Suwa,Chami" data-stacked="true">
                             Suwa<br/>Chami
                         </td>
-
                     </tr>
                 </tbody>
             </table>
@@ -463,6 +459,9 @@
                 ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
                 rekomendasi: "Akika (versi tidak terlalu lebar)" 
             },
+            "Airi": { 
+                nama: "Airi", info: "Info detail tidak ada di PDF. Direkomendasikan sebagai frame mirip Meiso, Akashi."
+            },
             "Haruna": { 
                 nama: "Haruna", info: "Info detail tidak ada di PDF. Direkomendasikan sebagai frame mirip Yoka, Okimi, Hiromi." 
             },
@@ -581,7 +580,6 @@
             "Chami": { 
                 nama: "Chami", info: "Info detail tidak ada di PDF." 
             },
-            // Ini tambahan yang hilang dari file Kakak
             "Geumi": { 
                 nama: "Geumi", bentuk: "Cat Eye", bahanDepan: "Metal", bahanGagang: "Metal", per: "Tidak Ada Per", nosepad: "Ada Nosepad", 
                 ukuranWajah: "Medium (ke lebar)", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
@@ -592,7 +590,6 @@
                 ukuranWajah: "Medium (ke kecil/lebar)", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
                 rekomendasi: "Anya, Akika, Geumi, Yuki" 
             },
-            // Ini data dari PDF yang tidak ada di denah, tapi saya masukkan untuk kelengkapan
             "Najio": { 
                 nama: "Najio", bentuk: "Square", bahanDepan: "Acetate", bahanGagang: "Acetate (plat besi)", per: "Sedikit Elastis", nosepad: "Tanam", 
                 ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "-", 
@@ -656,6 +653,7 @@
         };
         // ===== AKHIR DATABASE =====
 
+        // Ini adalah daftar frame di denah, dicocokkan dengan data-names di HTML
         const allGlasses = [
             { name: 'Kyosi', type: 'table', area: 'A1' },
             { name: 'Kaizu', type: 'table', area: 'A1' },
@@ -671,7 +669,9 @@
             { name: 'Miso', type: 'table', area: 'F1' },
             { name: 'Anya', type: 'table', area: 'F1' },
             { name: 'Kaitou', type: 'table', area: 'G1' },
+            { name: 'Najio', type: 'table', area: 'G1' }, 
             { name: 'Jine', type: 'table', area: 'G1' },
+            { name: 'Riyuki', type: 'table', area: 'G1' }, 
             { name: 'Miki', type: 'table', area: 'H1' },
             { name: 'Mine', type: 'table', area: 'H1' },
             { name: 'Yukai', type: 'table', area: 'I1' },
@@ -688,9 +688,9 @@
             { name: 'Kaiho', type: 'table', area: 'E2' },
             { name: 'Hiro', type: 'table', area: 'I2' },
             { name: 'Chita', type: 'table', area: 'I2' },
-            { name: 'Kosong', type: 'table', area: 'J2' },
-            { name: 'Okimi', type: 'stacked', area: 'K2' },
-            { name: 'Kaori', type: 'stacked', area: 'K2' },
+            { name: 'Kosong', type: 'table', area: 'J2-Kosong' }, // Area unik
+            { name: 'Okimi', type: 'stacked', area: 'J2' }, 
+            { name: 'Kaori', type: 'stacked', area: 'J2' }, 
             { name: 'Shika', type: 'table', area: 'A3' },
             { name: 'Mizu', type: 'table', area: 'A3' },
             { name: 'Hiromi', type: 'table', area: 'A3' },
@@ -704,34 +704,38 @@
             { name: 'Miura', type: 'table', area: 'I3' },
             { name: 'Akika', type: 'table', area: 'J3' },
             { name: 'Akame', type: 'table', area: 'J3' },
+            { name: 'Airi', type: 'table', area: 'J4' }, 
             { name: 'Haruna', type: 'table', area: 'J4' },
             { name: 'Hitto', type: 'table', area: 'A5' },
             { name: 'Himee', type: 'table', area: 'A5' },
             { name: 'Jiyo', type: 'table', area: 'B5' },
             { name: 'Luna', type: 'table', area: 'B5' },
-            { name: 'Piyo', type: 'stacked', area: 'C5' },
+            { name: 'Geumi', type: 'stacked', area: 'C5' }, 
+            { name: 'Nalla', type: 'stacked', area: 'C5' }, 
             { name: 'Arao', type: 'table', area: 'A6' },
             { name: 'Misawa', type: 'table', area: 'A6' },
             { name: 'Osaka', type: 'table', area: 'A6' },
             { name: 'Rumi', type: 'table', area: 'B6' },
             { name: 'Bomi', type: 'table', area: 'B6' },
-            { name: 'Doci', type: 'stacked', area: 'C6' },
-            { name: 'Yuki', type: 'stacked', area: 'C6' },
-            { name: 'Geumi', type: 'stacked', area: 'C6' }, // Ditambahkan
-            { name: 'Nalla', type: 'stacked', area: 'C6' }, // Ditambahkan
+            { name: 'Piyo', type: 'stacked', area: 'C6' }, 
             { name: 'Akita', type: 'table', area: 'A7' },
             { name: 'Inabe', type: 'table', area: 'A7' },
+            { name: 'Hatsu', type: 'table', area: 'A7' }, 
+            { name: 'Aisai', type: 'table', area: 'A7' }, 
             { name: 'Aozora', type: 'table', area: 'B7' },
             { name: 'Kinsei', type: 'table', area: 'B7' },
             { name: 'Hanami', type: 'table', area: 'B7' },
-            { name: 'Sena', type: 'stacked', area: 'C7' },
-            { name: 'Hana', type: 'stacked', area: 'C7' },
-            { name: 'Hatsu', type: 'table', area: 'A8' },
-            { name: 'Aisai', type: 'table', area: 'A8' },
+            { name: 'Doci', type: 'stacked', area: 'C7' }, 
+            { name: 'Yuki', type: 'stacked', area: 'C7' }, 
+            { name: 'Amiko', type: 'table', area: 'A8' }, // Diupdate
+            { name: 'Inari', type: 'table', area: 'A8' }, // Diupdate
+            { name:'Hizu', type: 'table', area: 'A8' }, // Diupdate
             { name: 'Yuji', type: 'table', area: 'B8' },
             { name: 'Ayumi', type: 'table', area: 'B8' },
-            { name: 'Suwa', type: 'stacked', area: 'C8' },
-            { name: 'Chami', type: 'stacked', area: 'C8' }
+            { name: 'Sena', type: 'stacked', area: 'C8' }, 
+            { name: 'Hana', type: 'stacked', area: 'C8' }, 
+            { name: 'Suwa', type: 'stacked', area: 'D8' }, 
+            { name: 'Chami', type: 'stacked', area: 'D8' }  
         ];
 
         const searchInput = document.getElementById('searchInput');
@@ -836,7 +840,9 @@
                         return;
                     }
 
-                    const data = glassesData[name]; 
+                    // Typo correction for user input
+                    const correctedName = name.toLowerCase() === 'amiku' ? 'Amiko' : name;
+                    const data = glassesData[correctedName]; 
                     
                     if (data) {
                         let detailHtml = '';
