@@ -118,22 +118,22 @@ const glassesData = {
     },
     "Akita": { 
         nama: "Akita", koleksi: "Metal Series", bentuk: "Square", bahanDepan: "Full Metal", bahanGagang: "Full Metal", per: "Tidak Elastis", nosepad: "Ada Nosepad", 
-        ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
+        ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
         rekomendasi: "Hatsu & Aisai (Versi lebih kecil)" 
     },
     "Inabe": { 
         nama: "Inabe", koleksi: "Metal Series", bentuk: "Square", bahanDepan: "Full Metal", bahanGagang: "Full Metal", per: "Tidak Elastis", nosepad: "Ada Nosepad", 
-        ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
+        ukuranWajah: "Medium ke Lebar", rekomendasiWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
         rekomendasi: "Akita (frame kotak full metal dengan detail yang berbeda)" 
     },
     "Hatsu": { 
         nama: "Hatsu", koleksi: "Metal Series", bentuk: "Square", bahanDepan: "Full Metal", bahanGagang: "Full Metal", per: "Tidak Elastis", nosepad: "Ada Nosepad", 
-        ukuranWajah: "Medium ke Kecil", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
+        ukuranWajah: "Medium ke Kecil", rekomendasiWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
         rekomendasi: "Najio (versi lebih rounded), Hajime (versi ada nosepad), Kinsei (versi tidak terlalu lebar)" 
     },
     "Aisai": { 
         nama: "Aisai", koleksi: "Metal Series", bentuk: "Rectangle", bahanDepan: "Full Metal", bahanGagang: "Full Metal", per: "Ada Per", nosepad: "Ada Nosepad", 
-        ukuranWajah: "Medium ke Kecil", rekomendasiWajah: "Semua bentuk wajah", catatanWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
+        ukuranWajah: "Medium ke Kecil", rekomendasiWajah: "Wajah Kotak rahang tajam kurang disarankan.", 
         rekomendasi: "Hatsu (versi tidak ada per dan lebih kecil), Akita (versi lebih lebar)" 
     },
     "Hankai": { 
@@ -660,57 +660,6 @@ lensInfoBtn.addEventListener('click', () => {
     const howToOrderHtml = `
         <div class="space-y-4 mb-6">
             
-            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r shadow-sm">
-                <div class="flex gap-3">
-                    <span class="text-2xl">🎯</span>
-                    <div class="w-full">
-                        <h3 class="font-bold text-green-800 mb-2 text-base">Bingung Pilih Lensa? Cek di sini!</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
-                            
-                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
-                                <div class="font-bold text-gray-700 mb-1">💻 Sering Depan Laptop/HP</div>
-                                <ul class="list-disc list-inside text-gray-600 ml-1">
-                                    <li><b>Blueray:</b> (Paling Hemat)</li>
-                                    <li><b>Bluechromic:</b> (Best Seller - 2 in 1)</li>
-                                    <li><b>Anti-Fatigue:</b> (Jika mata cepat lelah)</li>
-                                </ul>
-                            </div>
-
-                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
-                                <div class="font-bold text-gray-700 mb-1">☀️ Sering Aktivitas Outdoor</div>
-                                <ul class="list-disc list-inside text-gray-600 ml-1">
-                                    <li><b>Bluechromic:</b> (Berubah gelap otomatis)</li>
-                                    <li><b>Photochromic:</b> (Berubah gelap, standard)</li>
-                                    <li><b>Sunglasses:</b> (Hitam Permanen/Liburan)</li>
-                                </ul>
-                            </div>
-
-                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
-                                <div class="font-bold text-gray-700 mb-1">🚗 Sering Nyetir (Malam/Siang)</div>
-                                <ul class="list-disc list-inside text-gray-600 ml-1">
-                                    <li><b>Drive Lens:</b> (Anti silau lampu mobil lawan)</li>
-                                    <li><b>Crizal Sapphire:</b> (Pandangan jernih maksimal)</li>
-                                </ul>
-                            </div>
-
-                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
-                                <div class="font-bold text-gray-700 mb-1">🛡️ Ingin Awet & Tahan Gores</div>
-                                <ul class="list-disc list-inside text-gray-600 ml-1">
-                                    <li><b>Crizal Rock:</b> (Tahan gores 3x lipat)</li>
-                                    <li><b>Crizal Sapphire:</b> (Mudah dibersihkan)</li>
-                                </ul>
-                            </div>
-
-                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition col-span-1 sm:col-span-2">
-                                <div class="font-bold text-gray-700 mb-1">👓 Minus Tinggi (Di atas -4.00)</div>
-                                <p class="text-gray-600 ml-1">Wajib pilih opsi <b>Hi-Index 1.67</b> di jenis lensa apapun agar kacamata tidak tebal & berat.</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r shadow-sm text-xs sm:text-sm">
                 <div class="flex gap-3">
                     <span class="text-xl">📝</span>
@@ -773,6 +722,19 @@ lensInfoBtn.addEventListener('click', () => {
                 </div>
             </div>
 
+            <div class="bg-green-50 border-l-4 border-green-400 p-3 rounded-r shadow-sm text-xs">
+                 <div class="flex gap-2">
+                    <span class="text-lg">💡</span>
+                    <div>
+                        <h3 class="font-bold text-green-800 mb-1">Rekomendasi Cepat:</h3>
+                        <ul class="space-y-1 text-green-800">
+                            <li>✅ <b>Minus 0 - 2.00:</b> Pakai Index 1.56 (Standar) sudah cukup.</li>
+                            <li>✅ <b>Minus 2.00 - 4.00:</b> Disarankan Index 1.60 (Tipis) agar enteng.</li>
+                            <li>✅ <b>Minus > 4.00:</b> Sangat disarankan Index 1.67 (Super Tipis) agar estetika terjaga.</li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
         </div>
         
         <div class="border-b-2 border-gray-200 pb-2 mb-4 mt-8">
@@ -794,7 +756,7 @@ lensInfoBtn.addEventListener('click', () => {
         modalLensDetails.innerHTML += detailHtml;
     }
     
-    openLensModal("💁‍♀️ Panduan & Rekomendasi Lensa", "Pilih lensa yang pas dengan aktivitasmu");
+    openLensModal("💁‍♀️ Panduan Lengkap Lensa", "Cara order, panduan ketebalan, dan jenis lensa");
 });
 
 // === EVENT LISTENER DENAH (Buka Panel Biru) ===
@@ -996,11 +958,11 @@ searchInput.addEventListener('input', (e) => {
 const filterShape = document.getElementById('filterShape');
 const filterSize = document.getElementById('filterSize');
 const filterCollection = document.getElementById('filterCollection'); // Tambahan
+const filterFrameShape = document.getElementById('filterFrameShape'); // Tambahan baru
 const applyFilterBtn = document.getElementById('applyFilterBtn');
 const resetFilterBtn = document.getElementById('resetFilterBtn');
 
 // --- POPULATE DROPDOWN KOLEKSI SECARA OTOMATIS ---
-// Fungsi ini mencari semua jenis koleksi unik dari database dan memasukkannya ke dropdown
 function populateCollectionDropdown() {
     const collections = new Set();
     
@@ -1023,21 +985,40 @@ function populateCollectionDropdown() {
     });
 }
 
+// --- POPULATE DROPDOWN MODEL FRAME SECARA OTOMATIS (BARU) ---
+function populateFrameShapeDropdown() {
+    const shapes = new Set();
+    Object.values(glassesData).forEach(data => {
+        if (data.bentuk) {
+            shapes.add(data.bentuk);
+        }
+    });
+    const sortedShapes = Array.from(shapes).sort();
+    sortedShapes.forEach(shape => {
+        const option = document.createElement('option');
+        option.value = shape;
+        option.textContent = shape;
+        filterFrameShape.appendChild(option);
+    });
+}
+
 // Jalankan fungsi populate saat load
 populateCollectionDropdown();
+populateFrameShapeDropdown();
 
 // --- LOGIKA FILTER ---
 applyFilterBtn.addEventListener('click', () => {
     const selectedShape = filterShape.value.toLowerCase();
     const selectedSize = filterSize.value.toLowerCase();
     const selectedCollection = filterCollection.value; // Ambil nilai koleksi (Case sensitive sesuai DB)
+    const selectedFrameShape = filterFrameShape.value; // Ambil nilai model frame
 
     // Reset highlight sebelumnya
     cells.forEach(c => c.classList.remove('highlighted'));
     searchInput.value = ''; // Kosongkan search bar biasa biar ga bingung
 
-    if (!selectedShape && !selectedSize && !selectedCollection) {
-        alert("Silakan pilih minimal satu filter (Bentuk, Ukuran, atau Koleksi)!");
+    if (!selectedShape && !selectedSize && !selectedCollection && !selectedFrameShape) {
+        alert("Silakan pilih minimal satu filter (Bentuk, Ukuran, Koleksi, atau Model Frame)!");
         return;
     }
 
@@ -1045,12 +1026,13 @@ applyFilterBtn.addEventListener('click', () => {
 
     // Loop semua data frame di database
     for (const [key, data] of Object.entries(glassesData)) {
-        // Skip jika data tidak lengkap (hanya info dummy), kecuali jika kita hanya filter koleksi
-        if (!data.rekomendasiWajah && !data.ukuranWajah && !data.koleksi) continue;
+        // Skip jika data tidak lengkap (hanya info dummy)
+        if (!data.rekomendasiWajah && !data.ukuranWajah && !data.koleksi && !data.bentuk) continue;
 
         let shapeMatch = true;
         let sizeMatch = true;
         let collectionMatch = true;
+        let frameShapeMatch = true;
 
         // 1. Cek Kecocokan Bentuk Wajah
         if (selectedShape) {
@@ -1071,14 +1053,21 @@ applyFilterBtn.addEventListener('click', () => {
             }
         }
 
-        // 3. Cek Kecocokan Koleksi (Baru)
+        // 3. Cek Kecocokan Koleksi
         if (selectedCollection) {
             if (data.koleksi !== selectedCollection) {
                 collectionMatch = false;
             }
         }
 
-        if (shapeMatch && sizeMatch && collectionMatch) {
+        // 4. Cek Kecocokan Model Frame (BARU)
+        if (selectedFrameShape) {
+            if (data.bentuk !== selectedFrameShape) {
+                frameShapeMatch = false;
+            }
+        }
+
+        if (shapeMatch && sizeMatch && collectionMatch && frameShapeMatch) {
             matches.push(key);
         }
     }
@@ -1114,7 +1103,8 @@ applyFilterBtn.addEventListener('click', () => {
 resetFilterBtn.addEventListener('click', () => {
     filterShape.value = "";
     filterSize.value = "";
-    filterCollection.value = ""; // Reset filter koleksi
+    filterCollection.value = ""; 
+    filterFrameShape.value = ""; // Reset filter model frame
     searchInput.value = ""; 
     
     cells.forEach(c => {
