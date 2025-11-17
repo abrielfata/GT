@@ -660,6 +660,57 @@ lensInfoBtn.addEventListener('click', () => {
     const howToOrderHtml = `
         <div class="space-y-4 mb-6">
             
+            <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded-r shadow-sm">
+                <div class="flex gap-3">
+                    <span class="text-2xl">🎯</span>
+                    <div class="w-full">
+                        <h3 class="font-bold text-green-800 mb-2 text-base">Bingung Pilih Lensa? Cek di sini!</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                            
+                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
+                                <div class="font-bold text-gray-700 mb-1">💻 Sering Depan Laptop/HP</div>
+                                <ul class="list-disc list-inside text-gray-600 ml-1">
+                                    <li><b>Blueray:</b> (Paling Hemat)</li>
+                                    <li><b>Bluechromic:</b> (Best Seller - 2 in 1)</li>
+                                    <li><b>Anti-Fatigue:</b> (Jika mata cepat lelah)</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
+                                <div class="font-bold text-gray-700 mb-1">☀️ Sering Aktivitas Outdoor</div>
+                                <ul class="list-disc list-inside text-gray-600 ml-1">
+                                    <li><b>Bluechromic:</b> (Berubah gelap otomatis)</li>
+                                    <li><b>Photochromic:</b> (Berubah gelap, standard)</li>
+                                    <li><b>Sunglasses:</b> (Hitam Permanen/Liburan)</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
+                                <div class="font-bold text-gray-700 mb-1">🚗 Sering Nyetir (Malam/Siang)</div>
+                                <ul class="list-disc list-inside text-gray-600 ml-1">
+                                    <li><b>Drive Lens:</b> (Anti silau lampu mobil lawan)</li>
+                                    <li><b>Crizal Sapphire:</b> (Pandangan jernih maksimal)</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition">
+                                <div class="font-bold text-gray-700 mb-1">🛡️ Ingin Awet & Tahan Gores</div>
+                                <ul class="list-disc list-inside text-gray-600 ml-1">
+                                    <li><b>Crizal Rock:</b> (Tahan gores 3x lipat)</li>
+                                    <li><b>Crizal Sapphire:</b> (Mudah dibersihkan)</li>
+                                </ul>
+                            </div>
+
+                            <div class="bg-white p-2 rounded border border-green-200 hover:shadow-md transition col-span-1 sm:col-span-2">
+                                <div class="font-bold text-gray-700 mb-1">👓 Minus Tinggi (Di atas -4.00)</div>
+                                <p class="text-gray-600 ml-1">Wajib pilih opsi <b>Hi-Index 1.67</b> di jenis lensa apapun agar kacamata tidak tebal & berat.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r shadow-sm text-xs sm:text-sm">
                 <div class="flex gap-3">
                     <span class="text-xl">📝</span>
@@ -722,19 +773,6 @@ lensInfoBtn.addEventListener('click', () => {
                 </div>
             </div>
 
-            <div class="bg-green-50 border-l-4 border-green-400 p-3 rounded-r shadow-sm text-xs">
-                 <div class="flex gap-2">
-                    <span class="text-lg">💡</span>
-                    <div>
-                        <h3 class="font-bold text-green-800 mb-1">Rekomendasi Cepat:</h3>
-                        <ul class="space-y-1 text-green-800">
-                            <li>✅ <b>Minus 0 - 2.00:</b> Pakai Index 1.56 (Standar) sudah cukup.</li>
-                            <li>✅ <b>Minus 2.00 - 4.00:</b> Disarankan Index 1.60 (Tipis) agar enteng.</li>
-                            <li>✅ <b>Minus > 4.00:</b> Sangat disarankan Index 1.67 (Super Tipis) agar estetika terjaga.</li>
-                        </ul>
-                    </div>
-                 </div>
-            </div>
         </div>
         
         <div class="border-b-2 border-gray-200 pb-2 mb-4 mt-8">
@@ -756,7 +794,7 @@ lensInfoBtn.addEventListener('click', () => {
         modalLensDetails.innerHTML += detailHtml;
     }
     
-    openLensModal("💁‍♀️ Panduan Lengkap Lensa", "Cara order, panduan ketebalan, dan jenis lensa");
+    openLensModal("💁‍♀️ Panduan & Rekomendasi Lensa", "Pilih lensa yang pas dengan aktivitasmu");
 });
 
 // === EVENT LISTENER DENAH (Buka Panel Biru) ===
