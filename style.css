@@ -1,0 +1,18 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.cell {
+    transition: all 0.2s;
+}
+.cell:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+.cell.highlighted {
+    background-color: #fde047 !important;
+}
+.cell.selected {
+    ring: 4px;
+    ring-color: #3b82f6;
+    transform: scale(1.02);
+}
